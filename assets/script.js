@@ -8,4 +8,17 @@ $(searchBtn).on("click", function(event){
     searchBtn(content)
 })
 
-  let 
+  let OHYEAH = JSON.parse(localStorage.getItem(cities)) || [];
+  function search(content) {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q="
+      + content
+      + "&units=imperial"
+      + "&appid="
+      + apiKey
+    )
+  .then((response)) => (
+    console.log(response);
+    return response.json();
+  })
+  .then((data) => displayCurrent(data))
